@@ -7,4 +7,4 @@ COPY shoeclassifier.zip /opt/ml/model/
 
 RUN chmod -R 777 /opt/ml/model
 
-EXPOSE 8080 8081
+EXPOSE 8080 8082
