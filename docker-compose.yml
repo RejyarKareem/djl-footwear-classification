@@ -1,0 +1,14 @@
+services:
+  web-service:
+    image: reschi/djl-footwear-classification:latest
+    ports:
+      - "80:8080"
+    depends_on:
+      - model-service
+    restart: always
+
+  model-service:
+    image: reschi/footwear-serving:latest
+    ports:
+      - "8080:8080"
+    restart: always

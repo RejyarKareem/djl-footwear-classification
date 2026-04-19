@@ -1,0 +1,10 @@
+FROM deepjavalibrary/djl-serving:0.36.0
+
+USER root
+RUN mkdir -p /opt/ml/model
+
+COPY shoeclassifier.zip /opt/ml/model/
+
+RUN chmod -R 777 /opt/ml/model
+
+EXPOSE 8080 8081
