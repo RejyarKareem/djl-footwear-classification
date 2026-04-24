@@ -5,6 +5,7 @@ COPY models models
 COPY src src
 COPY .mvn .mvn
 COPY pom.xml mvnw ./
+RUN chmod +x mvnw
 
 RUN ./mvnw -Dmaven.test.skip=true package
 
