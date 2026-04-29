@@ -2,9 +2,9 @@ name: Build and Push to Docker Hub
 
 on:
   push:
-    branches: [ "main", "master" ]
+    branches: ["master" ]
   pull_request:
-    branches: [ "main", "master" ]
+    branches: ["master" ]
 
 jobs:
   build-and-push:
@@ -23,12 +23,12 @@ jobs:
       - name: Login to Docker Hub
         uses: docker/login-action@v3
         with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_TOKEN }}
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
         with:
           context: .
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/djl-footwear-classification:latest
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/djl-footwear-classification:latest
