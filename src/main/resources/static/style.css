@@ -6,7 +6,7 @@
 
 body {
     font-family: 'Inter', sans-serif;
-    background: linear-gradient(135deg, #0f172a 0%, #0d3326 100%);
+    background: linear-gradient(135deg, #111827 0%, #1f2937 100%);
     min-height: 100vh;
     display: flex;
     align-items: center;
@@ -30,23 +30,23 @@ body {
 /* Header */
 .card-header {
     background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-    padding: 44px 48px 40px;
+    padding: 32px 40px 28px;
     text-align: center;
     color: white;
 }
 
 .logo {
-    font-size: 52px;
+    font-size: 40px;
     line-height: 1;
-    margin-bottom: 14px;
+    margin-bottom: 10px;
     filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
 }
 
 h1 {
-    font-size: 30px;
+    font-size: 24px;
     font-weight: 800;
     letter-spacing: -0.6px;
-    margin-bottom: 6px;
+    margin-bottom: 4px;
 }
 
 .subtitle {
@@ -57,7 +57,7 @@ h1 {
 
 /* Body */
 .card-body {
-    padding: 40px 48px 48px;
+    padding: 28px 40px 40px;
 }
 
 .section-label {
