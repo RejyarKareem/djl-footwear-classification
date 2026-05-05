@@ -3,7 +3,9 @@ package ch.zhaw.deeplearningjava.footwear;
 import ai.djl.Model;
 import ai.djl.basicdataset.cv.classification.ImageFolder;
 import ai.djl.metric.Metrics;
+import ai.djl.modality.cv.transform.Normalize;
 import ai.djl.modality.cv.transform.RandomFlipLeftRight;
+import ai.djl.modality.cv.transform.RandomFlipTopBottom;
 import ai.djl.modality.cv.transform.Resize;
 import ai.djl.modality.cv.transform.ToTensor;
 import ai.djl.ndarray.types.Shape;
@@ -31,7 +33,7 @@ public final class Training {
     public static void main(String[] args) throws IOException, TranslateException {
         Path modelDir = Paths.get("models");
 
-        ImageFolder dataset = initDataset("ut-zap50k-images-square");
+        ImageFolder dataset = initDataset("ut-zap50k-small");
         RandomAccessDataset[] datasets = dataset.randomSplit(8, 2);
 
         Loss loss = Loss.softmaxCrossEntropyLoss();
@@ -67,8 +69,12 @@ public final class Training {
                 .setRepositoryPath(Paths.get(datasetRoot))
                 .optMaxDepth(10)
                 .addTransform(new RandomFlipLeftRight())
+                .addTransform(new RandomFlipTopBottom())
                 .addTransform(new Resize(Models.IMAGE_WIDTH, Models.IMAGE_HEIGHT))
                 .addTransform(new ToTensor())
+                .addTransform(new Normalize(
+                        new float[]{0.485f, 0.456f, 0.406f},
+                        new float[]{0.229f, 0.224f, 0.225f}))
                 .setSampling(BATCH_SIZE, true)
                 .build();
 

@@ -1,68 +1,72 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
     <title>Footwear Classification</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <script src="script.js" async></script>
+    <script src="script.js" defer></script>
 </head>
 
 <body>
+    <div class="page-wrapper">
+        <div class="card">
 
-    <div class="container-fluid">
-        <h1>👟 Footwear Classification</h1>
-        <p class="subtitle">DeepJavaLibrary (DJL) Demonstration by kareerej</p>
+            <div class="card-header">
+                <div class="logo">👟</div>
+                <h1>Footwear Classification</h1>
+                <p class="subtitle">Powered by Deep Java Library (DJL) &middot; by kareerej</p>
+            </div>
 
-        <div class="card border-0">
             <div class="card-body">
-                <h5>Upload Footwear Image</h5>
-                <form>
-                    <div class="form-group">
-                        <div id="drop-zone" class="drop-zone">
-                            <span class="drop-zone__prompt">Drop file here or click to upload</span>
-                            <input type="file" accept="image/png, image/jpeg" class="drop-zone__input" id="image" name="image"
-                                onchange="checkFiles(this.files);">
+                <p class="section-label">Upload an image to classify</p>
+                <div id="drop-zone" class="drop-zone">
+                    <svg class="upload-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5"/>
+                    </svg>
+                    <span class="drop-zone__prompt">Drop image here or <span class="link">browse</span></span>
+                    <span class="drop-zone__hint">PNG or JPEG &middot; max 10 MB</span>
+                    <input type="file" accept="image/png, image/jpeg" class="drop-zone__input" id="image" name="image"
+                        onchange="checkFiles(this.files);">
+                </div>
+
+                <div id="answerPart" class="hidden">
+                    <div class="divider"></div>
+                    <div class="results-container">
+
+                        <div class="preview-section">
+                            <p class="section-label">Analyzed Image</p>
+                            <img id="preview" src="#" alt="preview" />
                         </div>
-                        <small class="form-text text-muted">Maximum file size: 10 MB (PNG, JPEG)</small>
-                    </div>
-                </form>
-            </div>
-        </div>
 
-        <div id="answerPart" class="hidden">
-            <!-- Results Container with Image Left and Results Right -->
-            <div class="results-container">
-                <!-- Image Preview Section -->
-                <div class="preview-section">
-                    <h5>Analyzed Image</h5>
-                    <img id="preview" src="#" alt="preview" />
-                </div>
+                        <div class="results-side">
+                            <div id="loadingPart" class="loading" style="display: none;">
+                                <div class="spinner"></div>
+                                <p>Analyzing image&hellip;</p>
+                            </div>
 
-                <!-- Loading Indicator -->
-                <div id="loadingPart" class="loading" style="display: none;">
-                    <div class="spinner-border" role="status">
-                        <span class="sr-only">Loading...</span>
-                    </div>
-                    <p>Analyzing image...</p>
-                </div>
+                            <div id="resultsPart" style="display: none;">
+                                <p class="section-label">Classification Results</p>
+                                <div id="topResult" class="top-result" style="display: none;">
+                                    <span class="top-badge">Best Match</span>
+                                    <div class="top-label" id="topLabel"></div>
+                                    <div class="top-percentage" id="topPercentage"></div>
+                                </div>
+                                <div id="classificationList" class="classification-list"></div>
+                            </div>
+                        </div>
 
-                <!-- Results Section -->
-                <div id="resultsPart" class="results-section" style="display: none;">
-                    <h5>Classification Results</h5>
-                    <div id="topResult" class="classification-item top-result" style="display: none;">
-                        <div class="classification-label" id="topLabel"></div>
-                        <div class="classification-percentage" id="topPercentage"></div>
                     </div>
-                    <div id="classificationList"></div>
                 </div>
             </div>
+
         </div>
     </div>
-
 </body>
 
 </html>
